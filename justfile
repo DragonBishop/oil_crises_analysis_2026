@@ -1,0 +1,26 @@
+module_name := "oil_crises_analysis_2026"
+
+# list commands
+default:
+  @just --list
+
+# install the packages
+install:
+  {{ if path_exists("uv.lock") == "true" { "uv sync --all-groups --all-extras --locked --inexact" } else { "uv sync --all-groups --all-extras --inexact" } }}
+
+# setup for development
+setup: install git-setup
+
+# run test coverage and create
+test-cov:
+  uv run pytest --cov=src/oil_crises_analysis_2026 --cov-report=lcov:lcov.info --cov-report=term-missing --cov-report html --cov-report xml
+
+# update packages and uv lock file
+update:
+  uv sync -U --all-groups --all-extras --inexact
+
+# set up git filters (nbwipers) and pre-commit hooks
+git-setup:
+  @[ -d .git ] || git init -b main
+  uv run nbwipers install local
+  uv run prek install

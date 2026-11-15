@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier
+_commit: v2.3.1
+_src_path: https://github.com/DragonBishop/python-copier-template-ds.git
+project_name: Oil Crises Analysis 2026
+python_version: 3.15.2
+structure:
+- data
+- visualization
+- notebooks
+- reports
+tooling:
+- github_actions
+- releases
+- rumdl
+- renovate
